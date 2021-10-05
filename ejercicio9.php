@@ -9,23 +9,21 @@
 <body>
     <?php
     
-    $fecha=Date("d-m-Y");
-    $año_nacimiento=strtotime("04-10-2003");
-    $año_nacimiento = strtotime('31/01/2019');
-    //Le das el formato que necesitas a la fecha
-    $newformat = date('Y-m-d',$fecha );
-    
-    echo ("la fecha actual es $fecha");
-    echo "<br>";
-    $edad_persona=Date($fecha-$año_nacimiento);
-    if ($edad_persona<18){
-        echo ("pa tu casa, eres mu chico");
-    } elseif ($edad_persona>18 && $edad_persona <65){
-        echo ("pasa, cabesa");
+    $fecha_nacimiento ="05-10-2003";
+    $hoy= date("y-m-d");
+    $edad_diff = date_diff(date_create($fecha_nacimiento), date_create($hoy));
+      var_dump($edad_diff);
+      echo "<br>";
+      echo "Edad: ", $edad_diff->y;
+   
+    if ($edad_diff->y<18){
+      echo ("pa tu casa, eres mu chico");
+    } elseif ($edad_diff->y >=18 && $edad_diff->y <=65){
+       echo ("pasa, cabesa");
     } else 
         echo ("eres mu viejo");
       
 
-    ?>
+   ?>
 </body>
 </html>

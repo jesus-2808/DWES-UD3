@@ -33,8 +33,7 @@ for ($i =0; $i <= $max; $i++) {
    </td>";
     echo "</tr>";
    
-    
-
+  //Si uso aqui el if tengo que poner un ($i==5)
 }
    
     ?>

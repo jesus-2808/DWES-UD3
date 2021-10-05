@@ -13,6 +13,7 @@
     foreach ($_SERVER as $recorrido) {
         echo "<br>";
         echo $recorrido;
+        //recorriendo el array por valores uno a uno.
     };
     foreach ($_SERVER as $indice => $recorrido) {
         echo "<br>";
