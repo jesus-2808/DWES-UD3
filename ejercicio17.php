@@ -13,10 +13,20 @@ $apellidos="";
 $direccion="";
 $instituto="";
 $estudios_elegidos="";
+$rVacio="";
+$diaVacio="";
+$checkVacio="";
+$red;
+$dia;
+
 
 $texto_final="";
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $checkbox = $_POST["checkbox"];
+        $dia = $_POST["dia"];
+        $red = $_POST["red"];
+       
         
         if (empty($_POST["nombre"])){
            echo "el nombre debe estar relleno";
@@ -42,7 +52,8 @@ $texto_final="";
          }
 
          if (empty($_POST["instituto"])){
-            echo "el instituto debe estar rellena";
+            echo "el instituto debe estar relleno";
+            echo "<br>";
          }
          else{
              $instituto= $_POST["instituto"];
@@ -50,22 +61,38 @@ $texto_final="";
        
         if(!preg_match('/^ies+/i', $instituto)){
           echo "inserte un instituto que empiece por IES";
+          echo "<br>";
         } else{
             $instituto= $_POST["instituto"];
         }
         if (empty($_POST["estudios_elegidos"])){
-            echo "el instituto debe estar rellena";
+            echo "los estudios a realizar deben estar rellenos";
+            echo "<br>";
          }
          else{
              $estudios_elegidos= $_POST["estudios_elegidos"];
          }
 
+         if (!isset($_POST["red"])) {
+            //echo $red;
+            $rVacio = "No ha seleccionado ninguno";
+        }
+         if(!isset($_POST["dia"])){
+            $diaVacio = "Ninguna de las opciones de la lista han sido seleccionadas.";
+         }
+          if(!isset($_POST["checkbox"])){
+            $checkVacio = "Ninguno de los checkbox ha sido activado.";
+            
+         }
+
          if (empty($_POST["campoTextarea"])){
             echo "el texto no puede estar vacio";
+            
          }
          else{
              $texto_final= $_POST["campoTextarea"];
          }
+
        
         $nombre = stripslashes($nombre);
         $nombre = strip_tags($nombre);
@@ -121,31 +148,41 @@ $texto_final="";
         </p>
 
        <div>
-  <input type="radio" id="wifi" name="wifi" value="wifi">
-  <label for="html">Wifi</label><br>
-  <input type="radio" id="cable" name="radio" value="cable">
-  <label for="cable">cable</label><br>
-  <input type="radio" id="fibra" name="fibra" value="fibra">
-  <label for="javascript">fibra</label>
+       <p>
+                <label for="red">Wifi</label>    
+                <input type="radio" name="red" value="red" >
+                <label for="red">Cable</label>    
+                <input type="radio" name="red" value="red">
+                <label for="red">Fibra</label>    
+                <input type="radio" name="red" value="red">
+                <span style="color:red"><?php echo $rVacio?> </span>
+            </p>
     </div>
-        <select name="dias_semana" multiple>
-            <option value="1" selected>Lunes</option>
-            <option value="2">Martes</option>
-            <option value="3" selected>Miércoles</option>
-            <option value="4" selected>jueves</option>
-            <option value="5" selected>viernes</option>
-        </select>
+    <select name="dia[]" multiple>
+                <option value="lunes">Lunes</option>
+                <option value="martes">Martes</option>
+                <option value="miercoles">Miercoles</option>
+                <option value="jueves">Jueves</option>
+                <option value="viernes">Viernes</option>
+                <span style="color:red"><?php echo $diaVacio?> </span>
+            </select>
     </div>
         <p>
             <p><h4>Preferencias</h4></p>
-        <label for ="historia">
-            <input type="checkbox" id="cbox1" value="Historia"> Historia</label>
-        <input type="checkbox" id="cbox2" value="second_checkbox"> <label for="cbox2">Geografia</label>
-        <input type="checkbox" id="cbox2" value="second_checkbox"> <label for="cbox2">Lengua</label>
-        <input type="checkbox" id="cbox2" value="second_checkbox"> <label for="cbox2">Matematicas</label>
+            <p>
+                <input type="checkbox" name="checkbox[]" value="historia">
+                <label for="historia">Historia</label>
+                <input type="checkbox" name="checkbox[]" value="geografia">
+                <label for="geografia">Geografia</label>
+                <input type="checkbox" name="checkbox[]" value="lengua">
+                <label for="lengua">Lengua</label>
+                <input type="checkbox" name="checkbox[]" value="matematicas">
+                <label for="matematicas">Matematicas</label>
+                <span style="color:red"><?php echo $checkVacio?> </span>
+            </p>
         <div>
       
-        <textarea name="campoTextarea" value="<?php echo $texto_final; ?>"></textarea>
+        <textarea name="campoTextarea"  rows="10" cols="40" placeholder="Inserte aqui el texto" value="<?php echo $texto_final; ?>"></textarea>
     </div>
         </p>
         <p>
