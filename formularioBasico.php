@@ -10,6 +10,7 @@
     <h1>Formulario Actividad Aula</h1>
     <?php
 $contrasenya_incorrecta="";
+$mensaje="introduce contraseña de nuevo";
 if ($_SERVER["REQUEST_METHOD"]=="POST"){
 
 $usuario=strip_tags($_POST["usuario"]);
@@ -52,7 +53,7 @@ if(empty($usuario)){
         </p>
         <p>
             <label for="contrasenya">Contraseña</label>
-            <input type="password" name="contrasenya"/>
+            <input type="password" name="contrasenya" value="<?php echo $contrasenya; ?>">
             <span style="color:red"><?php echo $contrasenya_incorrecta; ?></span>
         </p>
         <p>

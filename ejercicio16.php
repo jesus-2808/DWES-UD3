@@ -13,8 +13,8 @@
     //o echo multiplicacion(3,7)
     
         include "funciones.inc.php";
-       include_once "funciones2.inc.php";
-       require "funciones2.inc.php";
+        include_once "funciones2.inc.php";
+        require "funciones2.inc.php";
         $mostrar=multiplicacion($multiplicando1,$multiplicando2);
         echo $mostrar;
         echo "multiplica";
