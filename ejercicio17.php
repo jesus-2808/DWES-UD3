@@ -23,9 +23,24 @@ $dia;
 $texto_final="";
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $checkbox = $_POST["checkbox"];
-        $dia = $_POST["dia"];
-        $red = $_POST["red"];
+        if(isset($_POST["checkbox"])){
+            $checkbox = $_POST["checkbox"];
+        }  else {
+            $checkVacio = "Ninguno de los checkbox ha sido activado.";
+        }
+            
+        if(isset($_POST["dia"])){
+            $checkbox = $_POST["dia"];
+        }  else {
+            $diaVacio = "selecciona un dia de la semana";
+        }
+       
+               
+        if(isset($_POST["red"])){
+          $red = $_POST["red"];
+        } else {
+            $rVacio = "selecciona una red";
+        }
        
         
         if (empty($_POST["nombre"])){
@@ -73,17 +88,6 @@ $texto_final="";
              $estudios_elegidos= $_POST["estudios_elegidos"];
          }
 
-         if (!isset($_POST["red"])) {
-            //echo $red;
-            $rVacio = "No ha seleccionado ninguno";
-        }
-         if(!isset($_POST["dia"])){
-            $diaVacio = "Ninguna de las opciones de la lista han sido seleccionadas.";
-         }
-          if(!isset($_POST["checkbox"])){
-            $checkVacio = "Ninguno de los checkbox ha sido activado.";
-            
-         }
 
          if (empty($_POST["campoTextarea"])){
             echo "el texto no puede estar vacio";
@@ -150,11 +154,11 @@ $texto_final="";
        <div>
        <p>
                 <label for="red">Wifi</label>    
-                <input type="radio" name="red" value="red" >
+                <input type="radio" name="red" value="wifi" >
                 <label for="red">Cable</label>    
-                <input type="radio" name="red" value="red">
+                <input type="radio" name="red" value="cable">
                 <label for="red">Fibra</label>    
-                <input type="radio" name="red" value="red">
+                <input type="radio" name="red" value="fibra">
                 <span style="color:red"><?php echo $rVacio?> </span>
             </p>
     </div>
