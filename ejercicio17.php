@@ -162,7 +162,7 @@ $texto_final="";
                 <span style="color:red"><?php echo $rVacio?> </span>
             </p>
     </div>
-    <select name="dia[]" multiple>
+             <select name="dia[]" multiple>
                 <option value="lunes">Lunes</option>
                 <option value="martes">Martes</option>
                 <option value="miercoles">Miercoles</option>

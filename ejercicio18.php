@@ -7,13 +7,28 @@
     <title>Formulario</title>
 </head>
 <body>
-    <h1>Formulario Actividad Aula</h1>
+    <h1>Formulario registro</h1>
     <?php
 $poblacion="";
 $codigo_postal="";
 $codigo_incorrecto="";
 $poblacion_incorrecta="";
+$prov_vacio="";
+$imagen;
+$texto = "";
 if ($_SERVER["REQUEST_METHOD"]=="POST"){
+
+    $texto = $_POST["texto"];
+            $imagen = $_FILE["imagen"]["name"];
+            $texto = strip_tags($texto);
+            $texto = stripslashes($texto);
+            $texto = htmlspecialchars($texto);
+
+            if($imagen = ""){
+                $imagen = "Imagen no enviada";
+            }else{
+                $imagen = "Imagen enviada";
+            }
 
 $poblacion=strip_tags($_POST["poblacion"]);
 $poblacion=stripslashes($_POST["poblacion"]);
@@ -28,10 +43,15 @@ if(!preg_match("/^[a-zA-Z ]*$/",  $poblacion)){
    $poblacion=$_POST["poblacion"];
 }
 
-if(!preg_match("/[0-9]/",  $codigo_postal)){
+if(!preg_match("/^[0-9]*$/",  $codigo_postal)){
     $codigo_incorrecto="el codigo postal debe estar formado solo por numeros";
 } else {
   $codigo_postal=$_POST["codigo_postal"];
+}
+
+if (!isset($_POST["provincia"])) {
+                
+    $prov_vacio = "No ha seleccionado ninguno";
 }
 
 //if(preg_match("/[A-Z][a-z]{15}[0-9]",  $contrasenya)){
@@ -48,6 +68,7 @@ if(empty($poblacion)){
     echo "el codigo postal debe estar relleno <br>";
 }
 
+
 }
 
 ?> 
@@ -63,6 +84,31 @@ if(empty($poblacion)){
             <label for="codigo_postal">Código postal</label>
             <input type="text" name="codigo_postal" value="<?php echo $codigo_postal; ?>">
             <span style="color:red"><?php echo $codigo_incorrecto; ?></span>
+        </p>
+
+        <p>
+                <label for="provincias">Sevilla</label>    
+                <input type="radio" name="Sevilla" value="Sevilla" >
+                <label for="provincias">Cádiz</label>    
+                <input type="radio" name="Cádiz" value="Cádiz">
+                <label for="provincias">Huelva</label>    
+                <input type="radio" name="Huelva" value="Huelva">
+                <label for="provincias">Granada</label>    
+                <input type="radio" name="Granada" value="Granada">
+                <label for="provincias">Málaga</label>    
+                <input type="radio" name="Málaga" value="Málaga">
+                <label for="provincias">Málaga</label>    
+                <input type="radio" name="Jaén" value="Jaén">
+                <label for="provincias">Almería</label>    
+                <input type="radio" name="Almería" value="Almería">
+                <span style="color:red"><?php echo $prov_vacio?> </span>
+            </p>
+            <p>
+        <textarea name="texto" id="" cols="30" rows="10" placeholder="Descripcion del municipio" value="<?php echo $texto?>"></textarea>
+        </p>
+        <p>
+            <label for="imagen">Imagen</label>
+            <input type="file"  id="imagen" name="imagen" accept="image/*">
         </p>
         <p>
 <input type="submit" name="enviar" value="Aceptar"/>
