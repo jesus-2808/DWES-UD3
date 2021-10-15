@@ -96,31 +96,31 @@ if(!isset($_POST["provincias"])){
         <p>      
              <div>
                 <label for="provincias">Sevilla</label>    
-                <input type="radio" name="Sevilla" value="Sevilla" > 
+                <input type="radio" name="provincias" value="Sevilla" > 
             </div>
                 <div>
                 <label for="provincias">Cádiz</label>    
-                <input type="radio" name="Cádiz" value="Cádiz"> 
+                <input type="radio" name="provincias" value="Cádiz"> 
                 </div>
                 <div>
                 <label for="provincias">Huelva</label>    
-                <input type="radio" name="Huelva" value="Huelva">
+                <input type="radio" name="provincias" value="Huelva">
                 </div>
                 <div>
                 <label for="provincias">Granada</label>    
-                <input type="radio" name="Granada" value="Granada">
+                <input type="radio" name="provincias" value="Granada">
                 </div>
                 <div>
                 <label for="provincias">Málaga</label>    
-                <input type="radio" name="Málaga" value="Málaga">
+                <input type="radio" name="provincias" value="Málaga">
                 </div>
                 <div>
                 <label for="provincias">Jaen</label>    
-                <input type="radio" name="Jaén" value="Jaén">
+                <input type="radio" name="provincias" value="Jaén">
                 </div>  
                 <div>
                 <label for="provincias">Almería</label>    
-                <input type="radio" name="Almería" value="Almería">
+                <input type="radio" name="provincias" value="Almería">
                 </div>
                 <span style="color:red"><?php echo $prov_vacio;?> </span>
             </p>
