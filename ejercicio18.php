@@ -16,6 +16,7 @@ $poblacion_incorrecta="";
 $prov_vacio="";
 $imagen;
 $texto = "";
+
 if ($_SERVER["REQUEST_METHOD"]=="POST"){
 
     $texto = $_POST["texto"];
@@ -49,10 +50,12 @@ if(!preg_match("/^[0-9]*$/",  $codigo_postal)){
   $codigo_postal=$_POST["codigo_postal"];
 }
 
-if (!isset($_POST["provincia"])) {
+
+
+//if (!isset($_POST["provincia"])) {
                 
-    $prov_vacio = "No ha seleccionado ninguno";
-}
+   // $prov_vacio = "No ha seleccionado ninguno";
+//}
 
 //if(preg_match("/[A-Z][a-z]{15}[0-9]",  $contrasenya)){
     //echo "contrasña correcta";
@@ -68,7 +71,11 @@ if(empty($poblacion)){
     echo "el codigo postal debe estar relleno <br>";
 }
 
-
+if(!isset($_POST["provincias"])){
+    $prov_vacio= "No has seleccionado ninguno";
+  } else {
+    $provincias=$_POST["provincias"];
+  }
 }
 
 ?> 
@@ -86,22 +93,36 @@ if(empty($poblacion)){
             <span style="color:red"><?php echo $codigo_incorrecto; ?></span>
         </p>
 
-        <p>
+        <p>      
+             <div>
                 <label for="provincias">Sevilla</label>    
-                <input type="radio" name="Sevilla" value="Sevilla" >
+                <input type="radio" name="Sevilla" value="Sevilla" > 
+            </div>
+                <div>
                 <label for="provincias">Cádiz</label>    
-                <input type="radio" name="Cádiz" value="Cádiz">
+                <input type="radio" name="Cádiz" value="Cádiz"> 
+                </div>
+                <div>
                 <label for="provincias">Huelva</label>    
                 <input type="radio" name="Huelva" value="Huelva">
+                </div>
+                <div>
                 <label for="provincias">Granada</label>    
                 <input type="radio" name="Granada" value="Granada">
+                </div>
+                <div>
                 <label for="provincias">Málaga</label>    
                 <input type="radio" name="Málaga" value="Málaga">
-                <label for="provincias">Málaga</label>    
+                </div>
+                <div>
+                <label for="provincias">Jaen</label>    
                 <input type="radio" name="Jaén" value="Jaén">
+                </div>  
+                <div>
                 <label for="provincias">Almería</label>    
                 <input type="radio" name="Almería" value="Almería">
-                <span style="color:red"><?php echo $prov_vacio?> </span>
+                </div>
+                <span style="color:red"><?php echo $prov_vacio;?> </span>
             </p>
             <p>
         <textarea name="texto" id="" cols="30" rows="10" placeholder="Descripcion del municipio" value="<?php echo $texto?>"></textarea>
